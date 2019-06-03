@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import store from './../../store'
 import { Link } from "react-router-dom";
 import RecipeCard from "./../RecipeCard/RecipeCard";
 import "./Home.css";
@@ -6,12 +7,15 @@ import "./Home.css";
 class Home extends Component {
   constructor(props) {
     super(props);
+    const reduxState = store.getState()
+    // console.log(reduxState.recipes)
     this.state = {
-      recipes: []
+      recipes: reduxState.recipes || []
     };
   }
 
   render() {
+    console.log(this.state)
     const recipes = this.state.recipes.map((recipe, i) => {
       return (
         <RecipeCard
